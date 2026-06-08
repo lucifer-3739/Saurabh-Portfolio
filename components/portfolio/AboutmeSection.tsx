@@ -74,8 +74,7 @@ const AboutmeSection = () => {
 
           <p>
             When I’m not coding, you’ll usually find me refining my portfolio,
-            experimenting with new frameworks, or building side projects—
-            especially
+            experimenting with new frameworks, or building side projects especially
             <span className="font-medium text-zinc-900 dark:text-zinc-200">
               {" "}
               SaaS tools
