@@ -150,7 +150,8 @@ const Overview = () => {
           />
           <ContactCard
             icon={<Globe />}
-            value="SaurabhSharma.gg"
+            value="saurabh-sharma.vercel.app"
+            href="https://saurabh-sharma.vercel.app"
             className="overview-card opacity-0"
           />
           <MiniCard icon={<User />} className="overview-card opacity-0">
