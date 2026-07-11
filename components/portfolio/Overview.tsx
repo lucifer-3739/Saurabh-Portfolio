@@ -15,6 +15,7 @@ import { useEffect, useState, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { LightRays } from "@/components/ui/light-rays";
+import { ParticleCard } from "./BentoEffects";
 
 const Overview = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -36,18 +37,22 @@ const Overview = () => {
 
   return (
     <div ref={containerRef}>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-stretch">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 items-stretch">
         {/* Profile Card */}
-        <div
+        <ParticleCard
           className="
-            md:col-span-2 h-full
-            relative p-6 rounded-2xl overflow-hidden group
+            sm:col-span-1 md:col-span-2 h-full
+            relative p-5 sm:p-6 rounded-2xl overflow-hidden group
             bg-white/70 dark:bg-zinc-900/30
             border border-black/10 dark:border-white/5
             hover:border-black/20 dark:hover:border-white/10
             transition-colors backdrop-blur-md
             overview-card opacity-0
+            magic-bento-card magic-bento-card--border-glow
           "
+          clickEffect={true}
+          enableMagnetism={true}
+          enableTilt={true}
         >
           {/* Light Rays Background */}
           <LightRays
@@ -96,7 +101,7 @@ const Overview = () => {
             {/* Text */}
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
-                <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white truncate">
+                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white truncate">
                   Saurabh Sharma
                 </h1>
                 <CheckCircle2 className="w-5 h-5 text-blue-500 fill-blue-500/10 shrink-0" />
@@ -108,10 +113,10 @@ const Overview = () => {
               </p>
             </div>
           </div>
-        </div>
+        </ParticleCard>
 
         {/* Details */}
-        <div className="md:col-span-2 grid grid-cols-1 gap-2 h-full">
+        <div className="sm:col-span-1 md:col-span-2 grid grid-cols-1 gap-2 h-full">
           <DetailCard
             icon={<Code2 />}
             label="Role:"
@@ -136,7 +141,7 @@ const Overview = () => {
         </div>
 
         {/* Contact */}
-        <div className="md:col-span-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
+        <div className="col-span-1 sm:col-span-2 md:col-span-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2">
           <ContactCard
             icon={<Phone />}
             value="+91 9769489715"
@@ -179,15 +184,19 @@ function DetailCard({
   className?: string;
 }) {
   return (
-    <div
+    <ParticleCard
       className={`
         p-4 rounded-2xl flex items-center gap-3 relative overflow-hidden
         bg-white/70 dark:bg-zinc-900/30
         border border-black/10 dark:border-white/5
         hover:bg-black/5 dark:hover:bg-zinc-900/50
         transition-colors backdrop-blur-md
+        magic-bento-card magic-bento-card--border-glow
         ${className || ""}
       `}
+      clickEffect={true}
+      enableMagnetism={true}
+      enableTilt={true}
     >
       <LightRays
         count={2}
@@ -204,7 +213,7 @@ function DetailCard({
           <span className="text-zinc-900 dark:text-zinc-200">{value}</span>
         </div>
       </div>
-    </div>
+    </ParticleCard>
   );
 }
 
@@ -218,15 +227,19 @@ function MiniCard({
   className?: string;
 }) {
   return (
-    <div
+    <ParticleCard
       className={`
         p-3 rounded-xl flex items-center gap-3 overflow-hidden relative
         bg-white/70 dark:bg-zinc-900/30
         border border-black/10 dark:border-white/5
         text-xs text-zinc-700 dark:text-zinc-300
         backdrop-blur-md
+        magic-bento-card magic-bento-card--border-glow
         ${className || ""}
       `}
+      clickEffect={true}
+      enableMagnetism={true}
+      enableTilt={true}
     >
       <LightRays
         count={1}
@@ -238,7 +251,7 @@ function MiniCard({
         <span className="text-zinc-500 shrink-0">{icon}</span>
         <span className="truncate">{children}</span>
       </div>
-    </div>
+    </ParticleCard>
   );
 }
 
@@ -253,18 +266,20 @@ function ContactCard({
   href?: string;
   className?: string;
 }) {
-  const Wrapper = href ? "a" : "div";
-  return (
-    <Wrapper
-      href={href}
+  const content = (
+    <ParticleCard
       className={`
         p-3 rounded-xl flex items-center gap-3 relative overflow-hidden
         bg-white/70 dark:bg-zinc-900/30
         border border-black/10 dark:border-white/5
         hover:bg-black/5 dark:hover:bg-zinc-800/50
         transition-colors backdrop-blur-md
+        magic-bento-card magic-bento-card--border-glow
         ${className || ""}
       `}
+      clickEffect={true}
+      enableMagnetism={true}
+      enableTilt={true}
     >
       <LightRays
         count={2}
@@ -278,8 +293,18 @@ function ContactCard({
           {value}
         </span>
       </div>
-    </Wrapper>
+    </ParticleCard>
   );
+
+  if (href) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className="block w-full">
+        {content}
+      </a>
+    );
+  }
+
+  return content;
 }
 
 export function LiveClock() {

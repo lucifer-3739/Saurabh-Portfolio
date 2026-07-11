@@ -19,7 +19,7 @@ const TechStack = () => {
         duration: 0.45,
         stagger: 0.04,
         ease: "back.out(1.5)",
-        clearProps: "all",
+        clearProps: "transform",
       }
     );
   }, { scope: containerRef });

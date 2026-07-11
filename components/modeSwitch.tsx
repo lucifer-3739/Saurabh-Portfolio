@@ -3,7 +3,6 @@
 import * as React from "react";
 import { MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
 
 export function ModeSwitcher() {
   const { setTheme, resolvedTheme } = useTheme();
@@ -36,17 +35,17 @@ export function ModeSwitcher() {
   const isDark = resolvedTheme === "dark";
 
   return (
-    <Button
-      variant="ghost"
+    <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className="
-        relative h-9 w-9 rounded-full
+        relative h-9 w-9 rounded-full flex items-center justify-center
         border border-black/10 dark:border-white/10
         bg-white/60 dark:bg-zinc-900/60
         backdrop-blur-md
         hover:bg-white dark:hover:bg-zinc-800
         transition-all duration-300
         ring-1 ring-transparent hover:ring-black/10 dark:hover:ring-white/10
+        outline-none cursor-pointer
       "
     >
       {/* Sun */}
@@ -70,6 +69,6 @@ export function ModeSwitcher() {
       />
 
       <span className="sr-only">Toggle theme</span>
-    </Button>
+    </button>
   );
 }

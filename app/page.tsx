@@ -1,14 +1,27 @@
+"use client";
+
+import { useRef } from "react";
 import Image from "next/image";
 import Overview from "@/components/portfolio/Overview";
 import Aboutsection from "@/components/portfolio/aboutsection";
+import AboutmeSection from "@/components/portfolio/AboutmeSection";
 import ProjectSection from "@/components/portfolio/project";
 import TeckStack from "@/components/portfolio/TeckStack";
 import ProfileHeader from "@/components/portfolio/header";
 import SocialLinks from "@/components/portfolio/socialLinks";
-import AboutmeSection from "@/components/portfolio/AboutmeSection";
 import FlickeringBg from "@/components/portfolio/FlickeringBg";
+import { GlobalSpotlight } from "@/components/portfolio/BentoEffects";
+import { useTheme } from "next-themes";
+import dynamic from "next/dynamic";
+
+const SideRays = dynamic(() => import("@/components/ui/SideRays"), { ssr: false });
 
 export default function Home() {
+  const gridRef = useRef<HTMLDivElement>(null);
+  const { resolvedTheme } = useTheme();
+
+  const isDark = resolvedTheme === "dark";
+
   return (
     <div
       className="
@@ -19,8 +32,34 @@ export default function Home() {
         dark:selection:bg-white/10 dark:selection:text-white
       "
     >
+      <GlobalSpotlight gridRef={gridRef} />
+
       {/* BACKGROUND */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        {/* SideRays Top Left */}
+        <div className="absolute top-0 left-0 w-[min(500px,50vw)] h-[min(500px,50vw)] opacity-30 sm:opacity-40 dark:opacity-15 dark:sm:opacity-20">
+          <SideRays
+            origin="top-left"
+            rayColor1={isDark ? "#38bdf8" : "#fb923c"}
+            rayColor2={isDark ? "#0284c7" : "#ea580c"}
+            speed={1.5}
+            intensity={1.2}
+            spread={1.8}
+          />
+        </div>
+
+        {/* SideRays Top Right */}
+        <div className="absolute top-0 right-0 w-[min(500px,50vw)] h-[min(500px,50vw)] opacity-30 sm:opacity-40 dark:opacity-15 dark:sm:opacity-20">
+          <SideRays
+            origin="top-right"
+            rayColor1={isDark ? "#38bdf8" : "#fb923c"}
+            rayColor2={isDark ? "#0284c7" : "#ea580c"}
+            speed={1.5}
+            intensity={1.2}
+            spread={1.8}
+          />
+        </div>
+
         {/* Grid Background */}
         <div
           className="
@@ -46,12 +85,12 @@ export default function Home() {
       </div>
 
       {/* CONTENT */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 pb-20">
+      <div ref={gridRef} className="bento-section relative z-10 max-w-5xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20">
         {/* Header */}
         <ProfileHeader />
 
         {/* HERO */}
-        <div className="mt-12 mb-16 relative group">
+        <div className="mt-8 sm:mt-12 mb-10 sm:mb-16 relative group">
           <div
             className="
               absolute inset-0 -z-10 rounded-xl
@@ -65,8 +104,8 @@ export default function Home() {
             "
           />
 
-          <div className="h-64 flex items-center justify-center">
-            <div className="relative w-32 h-20">
+          <div className="h-40 sm:h-56 md:h-64 flex items-center justify-center">
+            <div className="relative w-24 h-16 sm:w-32 sm:h-20">
               <Image
                 src="/name.svg"
                 alt="Logo"
@@ -83,18 +122,17 @@ export default function Home() {
 
         <Overview />
 
-        <div className="h-px bg-black/10 dark:bg-white/5 my-8 transition-colors" />
+        <div className="h-px bg-black/10 dark:bg-white/5 my-6 sm:my-8 transition-colors" />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="md:col-span-2 space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          <div className="md:col-span-2 space-y-6 sm:space-y-8">
             <Aboutsection />
             <AboutmeSection />
             <ProjectSection />
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             <TeckStack />
-            {/* <GithubActivity /> */}
             <SocialLinks />
           </div>
         </div>

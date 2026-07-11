@@ -5,6 +5,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { LightRays } from "@/components/ui/light-rays";
+import { ParticleCard } from "./BentoEffects";
 
 const Aboutsection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -45,7 +46,7 @@ const Aboutsection = () => {
             current: true,
           },
         ].map((job, i) => (
-          <div
+          <ParticleCard
             key={i}
             className="
               group p-4 rounded-2xl transition-all relative overflow-hidden
@@ -54,7 +55,11 @@ const Aboutsection = () => {
               hover:border-black/20 dark:hover:border-white/10
               backdrop-blur-md
               experience-card opacity-0
+              magic-bento-card magic-bento-card--border-glow
             "
+            clickEffect={true}
+            enableMagnetism={true}
+            enableTilt={true}
           >
             {/* Light Rays Background */}
             <LightRays
@@ -91,7 +96,7 @@ const Aboutsection = () => {
                 )}
               </div>
             </div>
-          </div>
+          </ParticleCard>
         ))}
       </div>
     </section>

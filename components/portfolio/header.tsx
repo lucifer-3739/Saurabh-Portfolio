@@ -31,7 +31,7 @@ const ProfileHeader = () => {
 
   return (
     <header className="
-      relative overflow-hidden rounded-2xl mt-6 px-6 py-4 flex items-center justify-between text-sm font-medium
+      relative overflow-hidden rounded-2xl mt-4 sm:mt-6 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between text-sm font-medium
       bg-white/40 dark:bg-zinc-900/20
       border border-black/10 dark:border-white/5
       backdrop-blur-md transition-all duration-500

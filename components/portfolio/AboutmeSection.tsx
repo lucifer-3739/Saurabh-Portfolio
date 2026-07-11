@@ -5,6 +5,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { LightRays } from "@/components/ui/light-rays";
+import { ParticleCard } from "./BentoEffects";
 
 const AboutmeSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -35,7 +36,7 @@ const AboutmeSection = () => {
         About Me
       </h2>
 
-      <div
+      <ParticleCard
         className="
           p-6 rounded-2xl text-sm leading-relaxed relative overflow-hidden
           bg-white/70 dark:bg-zinc-900/30
@@ -44,7 +45,11 @@ const AboutmeSection = () => {
           backdrop-blur-md
           transition-colors
           about-me-card opacity-0
+          magic-bento-card magic-bento-card--border-glow
         "
+        clickEffect={true}
+        enableMagnetism={true}
+        enableTilt={true}
       >
         <LightRays
           count={3}
@@ -87,7 +92,7 @@ const AboutmeSection = () => {
             that push both design and performance.
           </p>
         </div>
-      </div>
+      </ParticleCard>
     </section>
   );
 };
