@@ -12,9 +12,11 @@ interface Project {
   sub: string;
   year: string;
   image: string;
+  images?: string[];
   description: string;
   services: string[];
   tech: string[];
+  link: string;
 }
 
 export default function Projects() {
@@ -35,69 +37,77 @@ export default function Projects() {
   const projectsList: Project[] = [
     {
       number: "01",
-      title: "NEXORA",
-      category: "SAAS PLATFORM",
-      sub: "Real-time Web Analytics Dashboard",
+      title: "KINVITE",
+      category: "EVENT PLATFORM",
+      sub: "Digital RSVP & Invitation SaaS",
       year: "2026",
-      image: "/ui_saas_dashboard.jpg",
-      description: "Nexora is a state-of-the-art web analytics SaaS dashboard built for product teams. It aggregates high-volume stream tracking, user-behavior maps, and conversion funnels into a highly readable, high-performance web interface.",
-      services: ["UI/UX Design", "System Architecture", "Frontend Development", "Brand Identity"],
-      tech: ["React", "Next.js", "Tailwind CSS", "Framer Motion", "Recharts"]
+      image: "/Kinvite.jpg",
+      description: "Kinvite is an online event invitation and planning SaaS. It provides seamless template customization, calendar synchronization, interactive RSVP tracking tables, and automated email confirmation workflows for event hosts.",
+      services: ["UI/UX Interface Design", "Event Journey Mapping", "SaaS Engineering"],
+      tech: ["React", "Next.js", "Tailwind CSS", "PostgreSQL", "Resend API"],
+      link: "https://github.com/lucifer-3739/Kinvite"
     },
     {
       number: "02",
-      title: "LUMEN",
-      category: "CREATIVE STUDIO",
-      sub: "Brutalist Agency Homepage",
+      title: "SUPERPRODUCTIVE",
+      category: "PRODUCTIVITY APP",
+      sub: "Developer Task Planner & Analytics",
       year: "2026",
-      image: "/ui_brutalist_studio.jpg",
-      description: "Lumen is a portfolio website and brand showcase for a minimalist creative studio. The interface is defined by oversized typography, asynchronous load animations, custom scroll triggers, and high-impact art directions.",
-      services: ["Brutalism Research", "Visual UX Design", "Motion Engineering", "Content Strategy"],
-      tech: ["Next.js", "GSAP Animations", "Tailwind CSS", "Three.js"]
+      image: "/superproductive.jpg",
+      description: "Superproductive is an all-in-one developer productivity application. It combines task management boards, a customizable focus timer, workflow logging, and local developer analytics to help optimize coding output.",
+      services: ["Desktop Engineering", "User Experience Design", "Performance Auditing"],
+      tech: ["TypeScript", "Next.js", "Tailwind CSS", "Electron", "Framer Motion"],
+      link: "https://github.com/lucifer-3739/superproductive"
     },
     {
       number: "03",
-      title: "AETHER",
-      category: "FASHION E-COMMERCE",
-      sub: "Luxury Product Presentation",
+      title: "NOIZY",
+      category: "MUSIC STREAMING",
+      sub: "Immersive Music Web Application",
       year: "2026",
-      image: "/ui_fashion_ecommerce.jpg",
-      description: "Aether is a concept e-commerce platform designed for a luxury fashion house. It features full-screen media scrolls, smooth slide transitions, elegant cart flows, and secure Stripe payment integrations.",
-      services: ["E-commerce UX", "Editorial Grid layouts", "API integrations", "Fullstack Engineering"],
-      tech: ["React", "Next.js", "Stripe API", "Tailwind CSS", "Headless CMS"]
+      image: "/noizy.jpg",
+      images: ["/noizy_2.jpg", "/noizy_3.jpg"],
+      description: "Noizy is a modern music streaming web application focusing on immersive audio visual environments. It features responsive layouts, customized playlist creation, fluid animations, and real-time audio analysis controls.",
+      services: ["Web Audio Engineering", "Interaction Design", "Motion Choreography"],
+      tech: ["React", "Next.js", "Tailwind CSS", "Framer Motion", "Web Audio API"],
+      link: "https://github.com/lucifer-3739/Noizy"
     },
     {
       number: "04",
-      title: "KINNVITE",
-      category: "EVENT PLATFORM",
-      sub: "Digital Invitation SaaS",
-      year: "2026",
-      image: "/ui_fashion_ecommerce.jpg",
-      description: "Kinnvite is a stylish invitation SaaS platform designed for premium event coordinators. It features responsive custom templates, real-time RSVP tables, calendar syncing, and customized email reminders.",
-      services: ["UI/UX Design", "Interactive Form Flows", "Frontend Engineering", "Database Systems"],
-      tech: ["Next.js", "PostgreSQL", "Tailwind CSS", "Resend API", "Framer Motion"]
+      title: "TAKEITEAZY",
+      category: "E-COMMERCE PLATFORM",
+      sub: "Bespoke Cake & Pastry Shop",
+      year: "2025",
+      image: "/take_it_easy.jpg",
+      description: "Takeiteazy is a premium online bakery ordering and booking store. It streamlines catalog discovery, pastry customization selection, smooth cart additions, and secure checkout interactions.",
+      services: ["E-commerce UX", "Frontend Engineering", "Payment Integrations"],
+      tech: ["HTML5", "CSS3", "JavaScript", "Stripe API", "Vite"],
+      link: "https://github.com/lucifer-3739/Takeiteazy"
     },
     {
       number: "05",
-      title: "NOVA",
-      category: "DIGITAL PRODUCT",
-      sub: "Developer Productivity Suite",
-      year: "2025",
-      image: "/ui_saas_dashboard.jpg",
-      description: "Nova is a developer terminal tool dashboard that aggregates workspace diagnostics, container health metrics, and automated deployment logs. It streamlines build flows into a sleek brutalist dark dashboard.",
-      services: ["Interface Engineering", "UX Research", "Performance Optimization", "Data Visualization"],
-      tech: ["React", "Next.js", "Tailwind CSS", "WebSockets", "D3.js"]
+      title: "PRIVATE CHAT",
+      category: "COMMUNICATION APP",
+      sub: "End-to-End Encrypted Messaging",
+      year: "2026",
+      image: "/private_chat.jpg",
+      images: ["/private_chat_2.jpg.png"],
+      description: "Private Chat is a secure, real-time messaging application designed for absolute privacy. It features end-to-end encryption protocols, rapid WebSocket-driven text transmissions, clean multi-user chat rooms, and a responsive interface.",
+      services: ["Cryptography UI", "Real-time Messaging", "Security Auditing"],
+      tech: ["Next.js", "Socket.io", "Tailwind CSS", "Web Crypto API", "Node.js"],
+      link: "https://github.com/lucifer-3739/PriveteChat"
     },
     {
       number: "06",
-      title: "ARC",
-      category: "PORTFOLIO EXPERIENCE",
-      sub: "Immersive Creative Portfolio",
-      year: "2026",
-      image: "/ui_brutalist_studio.jpg",
-      description: "Arc is an interactive portfolio experience designed for creative directors. It utilizes smooth frame transitions, responsive editorial grids, custom mouse cursors, and layout reveal sequences.",
-      services: ["Art Direction", "Motion Engineering", "Responsive Layout Architecture"],
-      tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"]
+      title: "UNO GAME",
+      category: "MULTIPLAYER GAME",
+      sub: "Interactive Card Game Experience",
+      year: "2025",
+      image: "/uno_portfolio.jpg",
+      description: "UNO Game is a digital recreation of the classic card game, enabling multiplayer matchmaking, real-time websocket sync, custom house rules, and smooth deck animation mechanics.",
+      services: ["Websocket Architectures", "Canvas Animations", "State Sync Modeling"],
+      tech: ["JavaScript", "Socket.io", "Express", "Tailwind CSS", "HTML5 Canvas"],
+      link: "https://github.com/lucifer-3739/UNO-Game"
     }
   ];
 
@@ -116,7 +126,7 @@ export default function Projects() {
             </h2>
           </div>
           <a
-            href="https://github.com/saurabhram9087"
+            href="https://github.com/lucifer-3739"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-xs font-display font-bold tracking-widest text-text-primary uppercase border-b border-accent-red pb-1 group/btn hover:text-accent-red transition-all duration-300"
@@ -268,13 +278,13 @@ export default function Projects() {
                     {/* CTA Links */}
                     <div className="flex flex-wrap gap-4 pt-4 border-t border-border-light/60">
                       <a
-                        href="https://github.com/saurabhram9087"
+                        href={selectedProject.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 bg-accent-red hover:bg-accent-darkred text-white text-xs font-display font-bold tracking-widest uppercase py-3.5 px-6 rounded transition-all duration-300"
                         data-cursor-hover
                       >
-                        VISIT WEBSITE
+                        VISIT WEBSITE / REPO
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
                       <button
@@ -329,6 +339,28 @@ export default function Projects() {
 
                   </div>
                 </div>
+
+                {/* Project Image Gallery (If multiple images exist) */}
+                {selectedProject.images && selectedProject.images.length > 0 && (
+                  <div className="px-6 sm:px-12 pb-12 border-t border-border-light/20 pt-8 flex flex-col gap-6">
+                    <h3 className="font-display font-semibold text-lg text-accent-red uppercase tracking-wider text-left">
+                      PROJECT SCREENSHOTS
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      {selectedProject.images.map((img, i) => (
+                        <div key={i} className="relative aspect-video w-full overflow-hidden rounded-lg border border-border-light">
+                          <Image
+                            src={img}
+                            alt={`${selectedProject.title} screenshot ${i + 1}`}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
               </div>
             </motion.div>
           </motion.div>

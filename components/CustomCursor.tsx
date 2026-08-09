@@ -64,7 +64,7 @@ export default function CustomCursor() {
     <>
       {/* Outer interactive circle */}
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-accent-red pointer-events-none z-50 flex items-center justify-center -translate-x-1/2 -translate-y-1/2"
+        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-accent-red pointer-events-none z-[9999] flex items-center justify-center -translate-x-1/2 -translate-y-1/2"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
@@ -86,7 +86,7 @@ export default function CustomCursor() {
       {/* Inner precise pointer dot */}
       {!hoverText && (
         <motion.div
-          className="fixed top-0 left-0 w-2 h-2 rounded-full bg-accent-red pointer-events-none z-50 -translate-x-1/2 -translate-y-1/2"
+          className="fixed top-0 left-0 w-2 h-2 rounded-full bg-accent-red pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2"
           style={{
             x: cursorXSpring,
             y: cursorYSpring,

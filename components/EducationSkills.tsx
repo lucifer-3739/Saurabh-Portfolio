@@ -1,24 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Award } from "lucide-react";
+import { GraduationCap, Award, Code2 } from "lucide-react";
 
 export default function EducationSkills() {
   const educationTimeline = [
     {
-      title: "B.Tech / B.Sc. in Computer Science",
-      institution: "Tech University",
-      period: "2022 — 2026",
+      title: "B.Sc. in Computer Science",
+      institution: "Mumbai University",
+      period: "2022 — 2025",
       description: "Focused on software engineering, web technologies, algorithms, and human-computer interaction (HCI). Developed strong foundations in logic and structures.",
       icon: GraduationCap
     },
     {
-      title: "Additional Design / UX Certification",
-      institution: "Interaction Design Institute",
-      period: "2025",
-      description: "Specialized training covering user journey mapping, wireframing, motion choreography, typography, accessibility, and high-fidelity interface design.",
-      icon: Award
-    }
+    title: "Full-Stack Development & Software Engineering",
+    institution: "Self-Learning & Practical Projects",
+    period: "2024 – Present",
+    description:
+      "Continuously developing expertise in modern web technologies, frontend and backend development, APIs, databases, authentication, SaaS architecture, and AI-powered applications through hands-on projects.",
+    icon: Code2
+  }
   ];
 
   const skillsList = [

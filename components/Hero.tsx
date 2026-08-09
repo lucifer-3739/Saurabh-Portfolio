@@ -148,7 +148,7 @@ export default function Hero() {
               className="flex flex-col"
             >
               <span className="font-display font-bold text-4xl sm:text-5xl text-accent-red leading-none">
-                03+
+                01+
               </span>
               <span className="text-[10px] sm:text-xs font-sans text-text-secondary tracking-widest uppercase mt-1 leading-tight">
                 YEARS<br />EXPERIENCE
@@ -162,7 +162,7 @@ export default function Hero() {
               className="flex flex-col"
             >
               <span className="font-display font-bold text-4xl sm:text-5xl text-accent-red leading-none">
-                40+
+                25+
               </span>
               <span className="text-[10px] sm:text-xs font-sans text-text-secondary tracking-widest uppercase mt-1 leading-tight">
                 PROJECTS<br />COMPLETED
@@ -170,7 +170,7 @@ export default function Hero() {
             </motion.div>
 
             {/* Stat 3 */}
-            <motion.div
+            {/* <motion.div
               variants={textRevealVariants}
               transition={{ duration: 0.5 }}
               className="flex flex-col"
@@ -181,7 +181,7 @@ export default function Hero() {
               <span className="text-[10px] sm:text-xs font-sans text-text-secondary tracking-widest uppercase mt-1 leading-tight">
                 HAPPY<br />CLIENTS
               </span>
-            </motion.div>
+            </motion.div> */}
           </div>
 
           {/* Decorative Crosshair Circle element */}

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function Footer() {
   const socials = [
     { name: "LINKEDIN", url: "https://linkedin.com" },
-    { name: "GITHUB", url: "https://github.com/saurabhram9087" },
+    { name: "GITHUB", url: "https://github.com/lucifer-3739" },
     { name: "DRIBBBLE", url: "https://dribbble.com" },
     { name: "INSTAGRAM", url: "https://instagram.com" },
   ];
