@@ -35,7 +35,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 0.07, scale: 1 }}
           transition={{ duration: 1.8, ease: "easeOut" }}
-          className="font-display font-bold text-[24vw] leading-none text-accent-red tracking-tight text-center"
+          className="font-display font-bold text-[24vw] leading-none text-white tracking-tight text-center"
         >
           PORTFOLIO
         </motion.h1>
@@ -121,7 +121,7 @@ export default function Hero() {
           
           <div className="relative w-full h-full max-w-[360px] lg:max-w-none">
             <Image
-              src="/developer_portrait.jpg"
+              src="/developer_portrait_1.png"
               alt="Saurabh Sharma Portrait"
               fill
               priority
