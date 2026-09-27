@@ -30,15 +30,15 @@ export default function Hero() {
   return (
     <section className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-bg-primary py-12 px-6 sm:px-12 border-b border-border-light">
       {/* Giant Red Background Typography */}
-      <div className="absolute inset-0 flex items-center justify-center select-none z-0 pointer-events-none overflow-hidden">
-        <motion.h1
+      <div className="absolute inset-0 flex items-center justify-center select-none z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <motion.div
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 0.07, scale: 1 }}
           transition={{ duration: 1.8, ease: "easeOut" }}
           className="font-display font-bold text-[24vw] leading-none text-accent-red tracking-tight text-center"
         >
           PORTFOLIO
-        </motion.h1>
+        </motion.div>
       </div>
 
       {/* Main 12-Column Grid */}
@@ -60,29 +60,25 @@ export default function Hero() {
             Hello, I&apos;m
           </motion.p>
 
-          {/* Stacked Name */}
-          <motion.div
+          {/* Stacked Name as Primary Heading for SEO */}
+          <motion.h1
             variants={textRevealVariants}
             transition={{ duration: 0.8 }}
-            className="flex flex-col mb-4"
+            className="font-display font-bold text-6xl sm:text-7xl xl:text-8xl leading-[0.9] text-text-primary tracking-tight uppercase flex flex-col mb-4"
           >
-            <h2 className="font-display font-bold text-6xl sm:text-7xl xl:text-8xl leading-[0.9] text-text-primary tracking-tight uppercase">
-              SAURABH
-            </h2>
-            <h2 className="font-display font-bold text-6xl sm:text-7xl xl:text-8xl leading-[0.9] text-text-primary tracking-tight uppercase">
-              SHARMA
-            </h2>
-          </motion.div>
+            <span>SAURABH</span>
+            <span>SHARMA</span>
+          </motion.h1>
 
           {/* Role subtitle */}
-          <motion.h3
+          <motion.h2
             variants={textRevealVariants}
             transition={{ duration: 0.6 }}
             className="font-display text-xl sm:text-2xl tracking-widest uppercase mb-6"
           >
             <span className="text-text-primary">WEB DEVELOPER & </span>
             <span className="text-accent-red font-bold">UI/UX CREATOR</span>
-          </motion.h3>
+          </motion.h2>
 
           {/* Short personal description */}
           <motion.p
@@ -93,18 +89,40 @@ export default function Hero() {
             I design and build stylish, user-focused digital experiences that combine creativity with strategy. Passionate about clean design, smooth interactions, and details that make a difference.
           </motion.p>
 
-          {/* Availability details */}
+          {/* Availability details & Action CTAs */}
           <motion.div
             variants={textRevealVariants}
             transition={{ duration: 0.6 }}
-            className="flex items-center gap-3 text-[10px] sm:text-xs font-sans font-semibold tracking-widest text-text-primary uppercase"
+            className="flex flex-col gap-6"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-red opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-red"></span>
-            </span>
-            <Globe className="w-4 h-4 text-text-secondary" />
-            <span>AVAILABLE WORLDWIDE</span>
+            <div className="flex items-center gap-3 text-[10px] sm:text-xs font-sans font-semibold tracking-widest text-text-primary uppercase">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-red opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-red"></span>
+              </span>
+              <Globe className="w-4 h-4 text-text-secondary" />
+              <span>AVAILABLE WORLDWIDE FOR NEW WORK</span>
+            </div>
+
+            {/* Direct CTA Link Buttons */}
+            <div className="flex items-center gap-4 flex-wrap">
+              <a
+                href="#contact"
+                className="px-6 py-3.5 rounded bg-accent-red hover:bg-accent-red/90 text-white font-display font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-lg shadow-accent-red/20 flex items-center gap-2 group"
+                data-cursor-hover
+              >
+                <span>CONTACT ME / START PROJECT</span>
+                <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+
+              <a
+                href="#projects"
+                className="px-6 py-3.5 rounded border border-border-light hover:border-white/30 text-text-secondary hover:text-white font-display font-bold text-xs uppercase tracking-widest transition-all duration-300"
+                data-cursor-hover
+              >
+                EXPLORE WORK
+              </a>
+            </div>
           </motion.div>
         </motion.div>
 

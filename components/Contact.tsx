@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Mail, Globe, Phone, MapPin, ArrowRight } from "lucide-react";
+import { Mail, Globe, Phone, MapPin, ArrowRight, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -12,29 +12,50 @@ export default function Contact() {
     service: "Web Development",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate API submit
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || data.error) {
+        throw new Error(data.error || "Failed to send message. Please try again.");
+      }
+
+      setIsSubmitted(true);
       setFormData({ name: "", email: "", service: "Web Development", message: "" });
-    }, 4500);
+    } catch (err: any) {
+      setErrorMessage(err.message || "An unexpected error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
     {
       label: "EMAIL",
-      value: "saurabhram9087@gamil.com",
-      link: "mailto:saurabhram9087@gamil.com",
+      value: "saurabhram9087@gmail.com",
+      link: "mailto:saurabhram9087@gmail.com",
       icon: Mail,
     },
     {
       label: "WEBSITE",
-      value: "www.saurabhsharma.dev",
-      link: "https://saurabhsharma.dev",
+      value: "www.saurabh-sharma.vercel.app",
+      link: "https://saurabh-sharma.vercel.app/",
       icon: Globe,
     },
     {
@@ -120,10 +141,11 @@ export default function Contact() {
               <input
                 type="text"
                 required
+                disabled={isSubmitting}
                 placeholder="e.g. John Doe"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full bg-bg-primary border border-border-light focus:border-accent-red px-4 py-3 rounded text-sm text-text-primary placeholder:text-text-secondary/50 focus:outline-none transition-colors"
+                className="w-full bg-bg-primary border border-border-light focus:border-accent-red px-4 py-3 rounded text-sm text-text-primary placeholder:text-text-secondary/50 focus:outline-none transition-colors disabled:opacity-50"
                 data-cursor-hover
               />
             </div>
@@ -136,10 +158,11 @@ export default function Contact() {
               <input
                 type="email"
                 required
+                disabled={isSubmitting}
                 placeholder="e.g. john@example.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full bg-bg-primary border border-border-light focus:border-accent-red px-4 py-3 rounded text-sm text-text-primary placeholder:text-text-secondary/50 focus:outline-none transition-colors"
+                className="w-full bg-bg-primary border border-border-light focus:border-accent-red px-4 py-3 rounded text-sm text-text-primary placeholder:text-text-secondary/50 focus:outline-none transition-colors disabled:opacity-50"
                 data-cursor-hover
               />
             </div>
@@ -150,9 +173,10 @@ export default function Contact() {
                 REQUIRED SERVICE *
               </label>
               <select
+                disabled={isSubmitting}
                 value={formData.service}
                 onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                className="w-full bg-bg-primary border border-border-light focus:border-accent-red px-4 py-3 rounded text-sm text-text-primary focus:outline-none transition-colors cursor-pointer"
+                className="w-full bg-bg-primary border border-border-light focus:border-accent-red px-4 py-3 rounded text-sm text-text-primary focus:outline-none transition-colors cursor-pointer disabled:opacity-50"
                 data-cursor-hover
               >
                 <option value="Web Development">Web Development</option>
@@ -170,21 +194,48 @@ export default function Contact() {
               <textarea
                 required
                 rows={4}
+                disabled={isSubmitting}
                 placeholder="Tell me about your business goal, budget, and project timeframe..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full bg-bg-primary border border-border-light focus:border-accent-red px-4 py-3 rounded text-sm text-text-primary placeholder:text-text-secondary/50 focus:outline-none transition-colors resize-none"
+                className="w-full bg-bg-primary border border-border-light focus:border-accent-red px-4 py-3 rounded text-sm text-text-primary placeholder:text-text-secondary/50 focus:outline-none transition-colors resize-none disabled:opacity-50"
                 data-cursor-hover
               />
             </div>
 
+            {/* Error Message Box */}
+            {errorMessage && (
+              <div className="p-4 rounded bg-red-950/40 border border-accent-red/40 flex items-start gap-3 text-left">
+                <AlertCircle className="w-5 h-5 text-accent-red shrink-0 mt-0.5" />
+                <div className="flex flex-col">
+                  <span className="text-xs text-red-200 font-sans">{errorMessage}</span>
+                  <a
+                    href={`mailto:saurabhram9087@gmail.com?subject=${encodeURIComponent(
+                      `Portfolio Inquiry: ${formData.name || "Client"} (${formData.service})`
+                    )}&body=${encodeURIComponent(formData.message)}`}
+                    className="text-xs text-accent-red underline mt-1.5 hover:text-white font-medium"
+                  >
+                    Send directly via your email app →
+                  </a>
+                </div>
+              </div>
+            )}
+
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full border border-accent-red hover:bg-accent-red text-accent-red hover:text-white font-display font-bold tracking-widest text-xs uppercase py-4 rounded transition-all duration-300 flex items-center justify-center gap-2 mt-2"
+              disabled={isSubmitting}
+              className="w-full border border-accent-red hover:bg-accent-red text-accent-red hover:text-white font-display font-bold tracking-widest text-xs uppercase py-4 rounded transition-all duration-300 flex items-center justify-center gap-2 mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
               data-cursor-hover
             >
-              {isSubmitted ? "INQUIRY SENT!" : "SUBMIT REQUEST →"}
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>SENDING INQUIRY...</span>
+                </>
+              ) : (
+                <span>SUBMIT REQUEST →</span>
+              )}
             </button>
           </form>
 
@@ -193,15 +244,25 @@ export default function Contact() {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="absolute inset-0 bg-bg-secondary/95 rounded-xl flex flex-col items-center justify-center p-8 text-center"
+              className="absolute inset-0 bg-bg-secondary/98 rounded-xl flex flex-col items-center justify-center p-8 text-center z-20 border border-border-light"
             >
-              <span className="text-3xl mb-3">✉️</span>
-              <h4 className="font-display font-bold text-xl text-accent-red uppercase tracking-wider">
-                MESSAGE RECEIVED
+              <div className="w-12 h-12 rounded-full bg-accent-red/10 border border-accent-red/30 flex items-center justify-center mb-3">
+                <CheckCircle2 className="w-6 h-6 text-accent-red" />
+              </div>
+              <h4 className="font-display font-bold text-xl text-text-primary uppercase tracking-wider">
+                MESSAGE DELIVERED!
               </h4>
               <p className="font-sans text-xs text-text-secondary max-w-xs mt-2 leading-relaxed">
-                Thank you for reaching out, Saurabh. I will review your project specs and email you within 24 hours.
+                Thank you for reaching out! Your message has been sent to Saurabh. I will review your project details and get back to you within 24 hours.
               </p>
+              <button
+                type="button"
+                onClick={() => setIsSubmitted(false)}
+                className="mt-6 text-[10px] font-display font-bold tracking-widest text-accent-red hover:text-white border border-accent-red/50 hover:bg-accent-red px-4 py-2 rounded uppercase transition-colors"
+                data-cursor-hover
+              >
+                SEND ANOTHER MESSAGE
+              </button>
             </motion.div>
           )}
         </div>
